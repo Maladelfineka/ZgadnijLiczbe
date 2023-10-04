@@ -19,10 +19,10 @@ var h3 = document.querySelector('.h3-js');
 var h1 = document.querySelector('.h1-js');
     
 
-var lang = "pl";
+var lang = "en";
 
 
-
+var OstoaniaWiadomosc = "";
 var spr = document.querySelector('.check-js');
 var msg = document.querySelector('.msg-js');
 var input = document.querySelector('#input');
@@ -34,8 +34,15 @@ start.onclick = function () {
     start.disabled = true
     spr.disabled = false;
 }
+
 langButton.onclick = function(){
+
     if (lang == 'pl') {
+        if(tabPl[OstoaniaWiadomosc]){
+            msg.innerHTML = tabEn[OstoaniaWiadomosc]
+        }else {
+            msg.innerHTML = '...';
+        }
         h1.innerHTML = tabPl[0];
         h3.innerHTML = tabPl[1];
         spr.innerHTML = tabPl[2];
@@ -43,6 +50,11 @@ langButton.onclick = function(){
         lang = 'en'
     
     }else{
+        if(tabEn[OstoaniaWiadomosc]){
+            msg.innerHTML = tabPl[OstoaniaWiadomosc]
+        }else {
+            msg.innerHTML = '...';
+        }
         h1.innerHTML = tabEn[0];
         h3.innerHTML = tabEn[1];
         spr.innerHTML = tabEn[2];
@@ -54,6 +66,7 @@ langButton.onclick = function(){
 if (lang == 'pl') {
     h1.innerHTML = tabPl[0];
     h3.innerHTML = tabPl[1];
+    msg.innerHTML = tabPl[3];
     spr.innerHTML = tabPl[2];
     
 
@@ -61,6 +74,7 @@ if (lang == 'pl') {
     h1.innerHTML = tabEn[0];
     h3.innerHTML = tabEn[1];
     spr.innerHTML = tabEn[2];
+    msg.innerHTML = tabEn[3];
     
 }
 spr.onclick = function () {
@@ -70,22 +84,25 @@ spr.onclick = function () {
         } else {
             msg.innerHTML = tabEn[3];;
         }
-
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+        OstoaniaWiadomosc = 3;
         start.disabled = true
         spr.disabled = true;
     } else {
         if (input.value < losowaWartosc) {
             if (lang == 'pl') {
-                msg.innerHTML = tabPl[4];;
-            } else {
-                msg.innerHTML = tabEn[4];;
-            }
-        } else {
-            if (lang == 'pl') {
                 msg.innerHTML = tabPl[5];;
             } else {
                 msg.innerHTML = tabEn[5];;
-            }
+            } 
+            OstoaniaWiadomosc = 5;
+        } else {
+            if (lang == 'pl') {
+                msg.innerHTML = tabPl[4];;
+            } else {
+                msg.innerHTML = tabEn[4];;
+            } 
+            OstoaniaWiadomosc = 4;
         }
     }
 
